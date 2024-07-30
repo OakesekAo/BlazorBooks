@@ -1,5 +1,7 @@
+using BlazorBooks.Shared.Interfaces;
 using BlazorBooks.Web.Components;
 using BlazorBooks.Web.Data;
+using BlazorBooks.Web.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddDbContextFactory<BookContext>(options =>
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
+
+builder.Services.AddTransient<IBookService, BookService>();
 
 var app = builder.Build();
 

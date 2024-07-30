@@ -1,0 +1,31 @@
+root {
+    --color-main: #075e89;
+    --color-main-light: #267fac;
+    --color-main-dark: #043b55;
+    --color-very-light-gray:#ece4e4;
+    --color-light-black: #444;
+}
+
+html, body, * {
+    font-family: "Poppins", sans-serif;
+}
+
+html, body{
+    background-color: #f0f5fb;
+}
+
+.bg-main {
+    background-color: var(--color-main);
+}
+
+.bg-main-light {
+    background-color: var(--color-main-light);
+}
+
+.bg-main-dark {
+    background-color: var(--color-main-dark);
+}
+
+.text-main{
+    color: var(--color-main);
+}
