@@ -1,8 +1,8 @@
-root {
+:root {
     --color-main: #075e89;
     --color-main-light: #267fac;
     --color-main-dark: #043b55;
-    --color-very-light-gray:#ece4e4;
+    --color-very-light-gray: #ece4e4;
     --color-light-black: #444;
 }
 
