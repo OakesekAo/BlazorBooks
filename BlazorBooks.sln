@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBooks.Mobile", "Blazo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBooks.Shared", "BlazorBooks.Shared\BlazorBooks.Shared.csproj", "{42FA1674-80BD-4171-ABA9-AE8A3E8E2CAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBooks.Shared.Components", "BlazorBooks.Shared.Components\BlazorBooks.Shared.Components.csproj", "{3155BC29-DF02-4BF0-894D-AB0D13A2806E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBooks.Shared.Components", "BlazorBooks.Shared.Components\BlazorBooks.Shared.Components.csproj", "{3155BC29-DF02-4BF0-894D-AB0D13A2806E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

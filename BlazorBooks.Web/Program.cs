@@ -32,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>();
+app.MapRazorComponents<App>()
+    .AddAdditionalAssemblies(typeof(BlazorBooks.Shared.Components.Pages.Books).Assembly);
 
 app.Run();
