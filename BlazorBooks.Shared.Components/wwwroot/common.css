@@ -14,6 +14,10 @@ html, body{
     background-color: #f0f5fb;
 }
 
+a{
+    text-decoration: none;
+}
+
 .bg-main {
     background-color: var(--color-main);
 }
@@ -28,4 +32,9 @@ html, body{
 
 .text-main{
     color: var(--color-main);
+}
+.heading{
+    font-weight: bold;
+    gont-size: 20px;
+    color: #444;
 }

@@ -16,30 +16,30 @@
             <div class="row">
                 <div class="col-sm-12">
                 <div class="genre-list">
-                    <div class="genre-item">
-                        <a href="/" title="Top Books">Top Books</a>
+                    <div class="genre-item @(string.IsNullOrWhiteSpace(GenreSlug) ? "active" :"")">
+                        <a class="genre-link" href="/" title="Top Books">Top Books</a>
                     </div>
                     @foreach (var g in _genres)
                     {
-                        <div class="genre-item">
-                            <a href="?genre=@g.Slug" title="@g.Name">@g.Name</a>
+                            <div class="genre-item @(GenreSlug == g.Slug ? "active" :"")">
+                            <a class="genre-link" href="?genre=@g.Slug" title="@g.Name">@g.Name</a>
                             </div>
                     }
                     </div>
                 </div>
 
-                <h3 class="my-2">Top Books</h3>
+                <h3 class="mt-2 mb-3 heading">@_heading</h3>
                 <div class="row">
                 @foreach (var b in _books)
                 {
-                    <div class="col-sm-6 col-lg-3">
+                    <div class="book-block col-sm-6 col-lg-3">
                         <a href="/books/@b.Id" title="@b.Title">
-                            <figure bg-main-light>
+                                <figure class="bg-main-light image-box">
                                 <img src="@b.Image" alt="@b.Title"/>
 
                             </figure>
                             <div class="p-2">
-                                <h6>@b.Title</h6>
+                                <h6 class="text-main heading text-center">@b.Title</h6>
                             </div>
                             </a>
                     </div>
@@ -53,28 +53,44 @@
 </div>
 
 @code {
+    private const int PageSize = 16;
+
     [Parameter]
     public int? PageNo { get; set; } = 1;
+
+    [SupplyParameterFromQuery(Name ="genre")]
+    public string? GenreSlug{ get; set; }
 
     private GenreDto[] _genres = [];
     private BookListDto[] _books = [];
     private BookListDto[] _popularBooks = [];
     private int _totalCount = 0;
 
-    private const int PageSize = 16;
+    private string _heading = "Top Books";
 
 
     protected override async Task OnInitializedAsync()
     {
-        var genretask =  BookService.GetGenresAsync(topOnly: true);
-        var booksTask =  BookService.GetBooksAsync(PageNo ?? 1, PageSize);
-        var popularTask =  BookService.GetPopularBooksAsync(10);
+        var genretask =  BookService.GetGenresAsync(topOnly: false);
+        var booksTask =  BookService.GetBooksAsync(PageNo ?? 1, PageSize, GenreSlug);
+        var popularTask =  BookService.GetPopularBooksAsync(10, GenreSlug);
 
         _genres = await genretask;
         (_books, _totalCount) = await booksTask;
         _popularBooks = await popularTask;
-        
 
+        if (!string.IsNullOrWhiteSpace(GenreSlug))
+        {
+            var selectedGenre = _genres.FirstOrDefault(g => g.Slug == GenreSlug);
+            if (selectedGenre.Name is not null)
+            {
+                _heading = $"{selectedGenre.Name} Books";
+            }
+            else
+            {
+                _heading = "Top Books";
+            }
+        }
 
     }
 
