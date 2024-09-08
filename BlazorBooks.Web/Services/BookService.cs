@@ -102,12 +102,12 @@ namespace BlazorBooks.Web.Services
             using var context = _dbContextFactory.CreateDbContext();
 
             var book = await context.Books.Where(b => b.Id == bookId)
-                .Select(b => new BookDetailDto(b.Id, b.Title, b.Image,
-                            new AuthorDto(b.Author.Name, b.Author.Slug), b.NumPages, b.Format, b.Description,
-                            b.GenreBooks.Select(bg => new GenreDto(bg.Genre.Name, bg.Genre.Slug)).ToArray(),
-                            b.BuyLink
-                        ))
-                .FirstOrDefaultAsync();
+                        .Select(b => new BookDetailDto(b.Id, b.Title, b.Image,
+                                    new AuthorDto(b.Author.Name, b.Author.Slug), b.NumPages, b.Format, b.Description,
+                                    b.GenreBooks.Select(bg => new GenreDto(bg.Genre.Name, bg.Genre.Slug)).ToArray(),
+                                    b.BuyLink
+                                ))
+                        .FirstOrDefaultAsync();
 
             return book;
 

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BlazorBooks.Web.Data.Migrations
+namespace BlazorBooks.Web.data.migrations
 {
     [DbContext(typeof(BookContext))]
     partial class BookContextModelSnapshot : ModelSnapshot

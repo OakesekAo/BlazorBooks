@@ -8,11 +8,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BlazorBooks.Web.Data.Migrations
+namespace BlazorBooks.Web.data.migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20240730102639_init")]
-    partial class init
+    [Migration("20240908033024_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,0 +1,74 @@
+@page "/books/{bookId:int}"
+
+@inject NavigationManager NavigationManager
+
+@inject IBookService BookService
+
+<PageTitle>@_book?.Title | Blazor Books</PageTitle>
+
+<SectionContent SectionName="PageTitle">
+    <h1 class="m-0 text-white fw-bold">@_book?.Title - Book Description</h1>
+</SectionContent>
+
+<div class="contariner mt-5">
+    <div  class="row">
+        <div class="col-sm-4 d-flex flex-column aligm-items-center">
+            <div class="image-wrapper">
+                <img src="@_book?.Image" alt="@_book?.Title" class="img-responsive" @ />
+            </div>
+            <div class="my-4">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Book Id</th>
+                            <th>@_book?.Id</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Format</th>
+                            <th>@_book?.Format</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">No. of Pages</th>
+                            <th>@_book?.NumPages</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="@_book?.BookLink" target="_blank">
+                @(string.IsNullOrWhiteSpace(_book?.BuyLink) ? "Read More" : "Buy Now")
+            </a>
+        </div>
+        <div class="col-sm-8">
+
+        </div>
+</div>
+
+
+</div>
+
+@code{
+    [Parameter]
+    public int BookId { get; set; }
+
+    private BookDetailDto _book;
+    private BookListDto[] _similarBooks = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (BookId <= 0)
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+        var similarBooksTask = BookService.GetSimilarBooksAsync(BookId, 6);
+        _book = await BookService.GetBookAsync(BookId);
+        _similarBooks = await similarBooksTask;
+
+        if (_book is null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+}

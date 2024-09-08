@@ -9,10 +9,10 @@ namespace BlazorBooks.Web.Data.Entities
         public short Id { get; set; }
 
         [Required, MaxLength(50), Unicode(false)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Required, MaxLength(75), Unicode(false)]
-        public string? Slug { get; set; }
+        public string Slug { get; set; } = string.Empty;
         public bool IsTop { get; set; }
 
         public virtual ICollection<GenreBooks> GenreBooks { get; set; } = new List<GenreBooks>();

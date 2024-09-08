@@ -9,10 +9,10 @@ namespace BlazorBooks.Web.Data.Entities
         public int Id { get; set; }
 
         [Required, MaxLength(80), Unicode(false)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
 
         [Required, MaxLength(800), Unicode(false)]
-        public string Slug { get; set; }
+        public string Slug { get; set; } = string.Empty;
     }
 }

@@ -5,10 +5,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace BlazorBooks.Web.Data.Migrations
+namespace BlazorBooks.Web.data.migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
