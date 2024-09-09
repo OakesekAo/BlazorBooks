@@ -29,25 +29,14 @@
                 </div>
 
                 <h3 class="mt-2 mb-3 heading">@_heading</h3>
-                <div class="row">
-                @foreach (var b in _books)
-                {
-                    <div class="book-block col-sm-6 col-lg-3">
-                        <a href="/books/@b.Id" title="@b.Title">
-                                <figure class="bg-main-light image-box">
-                                <img src="@b.Image" alt="@b.Title"/>
 
-                            </figure>
-                            <div class="p-2">
-                                <h6 class="text-main heading text-center">@b.Title</h6>
-                            </div>
-                            </a>
-                    </div>
-                    }
-                </div>
+                <BooksGrid Books="_books" />
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <PopularBooks PopularBooksList="_popularBooks"/>
+
+        </div>
     </div>
 
 </div>

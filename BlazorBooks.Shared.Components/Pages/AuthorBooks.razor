@@ -1,0 +1,62 @@
+@page "/author/{authorSlug}/books"
+@page "/author/{authorSlug}/books/page/{pageNo:int?}"
+
+@inject NavigationManager NavigationManager
+@inject IBookService BookService
+
+<PageTitle>@_heading | Blazor Books</PageTitle>
+
+<SectionContent SectionName="PageTitle">
+    <h1 class="m-0 text-white fw-bold">@_heading</h1>
+</SectionContent>
+
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <h3 class="mt-2 mb-3 heading">@_heading</h3>
+
+                <BooksGrid Books="_authorBooks" />
+            </div>
+        </div>
+        <div class="col-md-3">
+
+            <PopularBooks PopularBooksList="_popularBooks" />
+        </div>
+    </div>
+
+</div>
+
+@code{
+    private const int PageSize = 16;
+
+
+    [Parameter]
+    public string AuthorSlug { get; set; }
+    [Parameter]
+    public int? PageNo {get; set;} = 1;
+
+    private BookListDto[] _authorBooks = [];
+    private BookListDto[] _popularBooks = [];
+    private int _totalCount = 0;
+
+    private string _heading = "Author Books";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (PageNo <= 0 || string.IsNullOrWhiteSpace(AuthorSlug))
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+        (_authorBooks, _totalCount) = await BookService.GetBooksByAuthorAsync(PageNo ?? 1, PageSize, AuthorSlug);
+        _popularBooks = await BookService.GetPopularBooksAsync(10);
+
+        var author = _authorBooks.FirstOrDefault()?.Author;
+        if(author is not null)
+        {
+            _heading = $"Books by {author.Value.Name}";
+        }
+    }
+}

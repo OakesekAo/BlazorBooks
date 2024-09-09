@@ -1,4 +1,5 @@
-﻿<Router AppAssembly="@typeof(MauiProgram).Assembly">
+﻿<Router AppAssembly="@typeof(MauiProgram).Assembly"
+        AdditionalAssemblies="new[]{typeof(BlazorBooks.Shared.Components.Pages.Books).Assembly}">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(Components.Layout.MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />

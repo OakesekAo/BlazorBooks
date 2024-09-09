@@ -1,4 +1,5 @@
 using BlazorBooks.Shared.Interfaces;
+using BlazorBooks.Web;
 using BlazorBooks.Web.Components;
 using BlazorBooks.Web.Data;
 using BlazorBooks.Web.Services;
@@ -34,5 +35,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(BlazorBooks.Shared.Components.Pages.Books).Assembly);
+
+app.MapBookEndPoints();
 
 app.Run();
