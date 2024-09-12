@@ -1,0 +1,37 @@
+@page "/genres"
+
+@inject IBookService BookService
+
+<PageTitle>All Genres | Blazor Books</PageTitle>
+
+<SectionContent SectionName="PageTitle">
+    <h1 class="m-0 text-white fw-bold">All Genres</h1>
+</SectionContent>
+
+<div class="container-lg">
+    <div class="row">
+
+                        @foreach (var g in _genres)
+                        {
+                            <div class="col-6 col-sm-3 mb-4">
+                                <a class="genre-link" href="/?genre=@g.Slug" title="@g.Name">@g.Name</a>
+                            </div>
+                        }
+
+    </div>
+
+</div>
+
+@code {
+
+    private GenreDto[] _genres = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        var genretask = BookService.GetGenresAsync(topOnly: false);
+
+        _genres = await genretask;
+
+    }
+
+}

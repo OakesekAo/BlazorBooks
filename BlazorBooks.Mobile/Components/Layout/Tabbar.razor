@@ -1,0 +1,35 @@
+@inject NavigationManager NavigatioManager
+<div class="tabbar d-flex justify-content-around align-items-center bg-white py-2 fixed-bottom">
+    <NavLink href="/" class="tab-link @ExploreClass">
+        Explore
+    </NavLink>
+    <a role="button" @onclick="ShowTopGenres" class="tab-link">
+        Top Genres
+    </a>
+    <NavLink href="/genres" class="tab-link @AllGenresClass">
+        Genres
+    </NavLink>@* 
+</div>
+
+Left off at 6:02:32
+
+@code{ *@
+    private string ExploreClass
+    {
+        get
+        {
+            var path = NavigatioManager.Uri.Replace(NavigatioManager.BaseUri, "");
+            if(string.IsNullOrWhiteSpace(path)|| path == "/" || path.StartsWith("?")|| path.StartsWith("?/"))
+            {
+                return "active";
+            }
+            return "";
+        }
+    }
+    private string AllGenresClass =>
+        NavigatioManager.Uri.Contains("/genres") ? "active" : "";
+
+    private void ShowTopGenres(){
+
+    }
+}
