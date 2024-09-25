@@ -1,6 +1,3 @@
-Here's a good README for the **BlazorBooks** repository:
-
----
 
 # BlazorBooks
 
